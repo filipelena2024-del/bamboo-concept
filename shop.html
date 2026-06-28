@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Bamboo Concept</title>
+    <meta name="description" content="Browse our complete collection of premium bamboo and bamboo furniture.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="icon" href="images/icon.png" type="image/png">
+
+    <!-- SEO & Social Meta Tags -->
+    <meta name="description" content="Рачно изработен мебел од бамбус. Откријте луксузни сетови, надворешен мебел и трпезариски маси инспирирани од природата.">
+    <meta name="keywords" content="бамбус, бамбус, мебел, луксузни сетови, надворешен мебел, трпезариски маси, bamboo, bamboo, furniture, macedonia, скопје">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bambooconcept.mk/">
+    <meta property="og:title" content="Bamboo Concept | Мебел инспириран од природата">
+    <meta property="og:description" content="Рачно изработен мебел од бамбус. Откријте луксузни сетови, надворешен мебел и трпезариски маси инспирирани од природата.">
+    <meta property="og:image" content="https://bambooconcept.mk/images/logo.png">
+
+    <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'YOUR_PIXEL_ID');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+
+    <!-- Google tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+<body data-page="shop">
+
+    <!-- Header (Same as index.html but minified for brevity, would ideally be a component or injected, but we copy for plain HTML) -->
+    <header class="nav nav--scrolled" style="background-color: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+        <div class="container nav__container flex flex--between flex--center">
+            <button class="nav__mobile-toggle"><span class="nav__mobile-icon"></span></button>
+            <a href="index.html" class="nav__logo" style="display:flex; align-items:center;"><img src="images/logo.png" alt="Bamboo Concept Logo" style="height: 40px; width: auto;"></a>
+            <nav class="nav__menu">
+                <a href="index.html" class="nav__link" style="color:var(--charcoal)" data-i18n="nav.home">Home</a>
+                <a href="shop.html" class="nav__link" style="color:var(--charcoal)" data-i18n="nav.shop">Shop</a>
+                <a href="about.html" class="nav__link" style="color:var(--charcoal)" data-i18n="nav.about">About</a>
+                <a href="contact.html" class="nav__link" style="color:var(--charcoal)" data-i18n="nav.contact">Contact</a>
+                
+                <!-- Toggles moved into menu for cleaner mobile setup -->
+                <div class="nav__toggles flex flex--center" style="gap:12px; font-weight:600; font-size:1.1rem; margin-top:24px; padding-top:24px; border-top:1px solid #eee;">
+                    <button class="js-cycle-lang" style="background:none;border:none;cursor:pointer;color:inherit;font-weight:inherit;font-family:inherit;padding:4px;" id="current-lang-label" aria-label="Change Language">MK</button>
+                    <span style="opacity:0.3">|</span>
+                    <button class="js-cycle-currency" style="background:none;border:none;cursor:pointer;color:inherit;font-weight:inherit;font-family:inherit;padding:4px;" id="current-currency-label" aria-label="Change Currency">MKD</button>
+                </div>
+            </nav>
+            <div class="nav__actions flex flex--center" style="gap: var(--space-4);">
+                <a href="cart.html" class="nav__icon-btn nav__cart" style="color:var(--charcoal)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span class="nav__cart-count" id="cart-count-badge" style="display:none">0</span>
+                </a>
+            </div>
+        </div>
+        <div class="nav__mobile-overlay"></div>
+    </header>
+
+    <main id="main-content">
+        
+        <div class="container section">
+            <h1 class="section__title" style="text-align:left; margin-bottom:var(--space-6);" data-i18n="shop.title">Our Collection</h1>
+            
+            <div class="shop-layout">
+                
+                <!-- Mobile Filter Toggle -->
+                <button type="button" class="btn btn--outline" id="filter-toggle-btn" style="margin-bottom:var(--space-4); width:100%; display:none;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                    <span data-i18n="shop.filter">Filters</span>
+                </button>
+
+                <!-- Sidebar Filters -->
+                <aside class="shop-sidebar" id="filter-sidebar">
+                    <div class="flex flex--between" style="margin-bottom:var(--space-4)">
+                        <h3 data-i18n="shop.filter" style="margin:0">Filters</h3>
+                        <button type="button" id="filter-close-btn" class="btn btn--icon" style="display:none;" data-i18n-aria="common.close">✕</button>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-group__title" data-i18n="shop.category">Category</h4>
+                        <div class="filter-group__content" id="filter-categories">
+                            <!-- Categories populated via JS -->
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-group__title" data-i18n="shop.price_range">Price Range</h4>
+                        <div class="filter-group__content">
+                            <div style="display:flex; gap:var(--space-2); margin-bottom:var(--space-2);">
+                                <input type="number" id="filter-price-min" class="form-group__input" placeholder="Min" style="padding:4px 8px;font-size:14px">
+                                <span style="align-self:center">-</span>
+                                <input type="number" id="filter-price-max" class="form-group__input" placeholder="Max" style="padding:4px 8px;font-size:14px">
+                            </div>
+                            <button type="button" id="filter-price-apply" class="btn btn--outline" style="width:100%; padding:4px; font-size:14px;">Apply</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-group__title" data-i18n="shop.availability">Availability</h4>
+                        <div class="filter-group__content">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" id="filter-stock">
+                                <span data-i18n="product.in_stock">На залиха</span>
+                            </label>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="shop-content">
+                    
+                    <!-- Top Bar -->
+                    <div class="shop-topbar flex flex--between flex--center">
+                        <div class="form-group" style="margin-bottom:0; max-width:300px; width:100%;">
+                            <input type="text" id="shop-search-input" class="form-group__input" data-i18n-placeholder="shop.search_placeholder" placeholder="Search products...">
+                        </div>
+                        
+                        <div style="display:flex; gap:var(--space-4); align-items:center;">
+                            <span id="shop-result-count" style="color:var(--bamboo-tan-light); font-size:0.9rem;"></span>
+                            <select id="shop-sort-select" class="form-group__input" style="padding-top:8px; padding-bottom:8px; max-width:200px; cursor:pointer;">
+                                <option value="newest" data-i18n="shop.sort_newest">Newest</option>
+                                <option value="price-asc" data-i18n="shop.sort_price_asc">Price: Low to High</option>
+                                <option value="price-desc" data-i18n="shop.sort_price_desc">Price: High to Low</option>
+                                <option value="name" data-i18n="shop.sort_name">Name A-Z</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Active Filters -->
+                    <div id="active-filters" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:var(--space-6);"></div>
+
+                    <!-- Grid -->
+                    <div id="shop-grid" class="grid grid--3">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="shop-empty-state" class="empty-state" style="display:none; margin-top:var(--space-8);">
+                        <div class="empty-state__icon">🔍</div>
+                        <h3 class="empty-state__title" data-i18n="shop.no_results">No products found</h3>
+                        <p data-i18n="shop.no_results_text">Try adjusting your filters or search terms</p>
+                    </div>
+
+                    <!-- Pagination -->
+                    <nav id="shop-pagination" style="margin-top:var(--space-8);"></nav>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer__grid grid grid--4">
+            <div>
+                <a href="index.html" class="nav__logo" style="display:flex; align-items:center;"><img src="images/logo.png" alt="Bamboo Concept Logo" style="height: 40px; width: auto;"></a>
+                <p style="opacity:0.8; line-height:1.6;" data-i18n="footer.description">Handcrafted bamboo furniture, inspired by nature.</p>
+            </div>
+            <div>
+                <h4 class="footer__title" data-i18n="footer.quick_links">Quick Links</h4>
+                <ul class="footer__links">
+                    <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                    <li><a href="shop.html" data-i18n="nav.shop">Shop</a></li>
+                    <li><a href="about.html" data-i18n="nav.about">About</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer__title" data-i18n="footer.categories">Categories</h4>
+                <ul class="footer__links">
+                    <li><a href="shop.html?category=luxury_sets" data-i18n="categories.luxury_sets">Luxury Sets</a></li>
+                    <li><a href="shop.html?category=outdoor" data-i18n="categories.outdoor">Outdoor Furniture</a></li>
+                    <li><a href="shop.html?category=hanging_chairs" data-i18n="categories.hanging_chairs">Hanging Chairs</a></li>
+                    <li><a href="shop.html?category=bamboo_products" data-i18n="categories.bamboo_products">Bamboo Products</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer__title" data-i18n="footer.contact">Contact</h4>
+                <ul class="footer__links" style="margin-bottom: var(--space-4);">
+                    <li><a href="mailto:bambooconsept@gmail.com" style="display:inline-flex; align-items:center; gap:8px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        bambooconsept@gmail.com
+                    </a></li>
+                    <li><a href="tel:070707770" style="display:inline-flex; align-items:center; gap:8px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        070 707 770
+                    </a></li>
+                    <li><a href="https://maps.google.com/?q=Kačanički+pat+82,+Skopje" target="_blank" style="display:inline-flex; align-items:center; gap:8px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span data-i18n="contact.address">Kačanički pat No. 82, Skopje 1000</span>
+                    </a></li>
+                </ul>
+                <h4 class="footer__title" data-i18n="footer.follow_us" style="margin-bottom:var(--space-2);">Follow Us</h4>
+                <div class="flex" style="gap:12px; align-items:center;">
+                    <a href="https://www.facebook.com/bambooconsept.mk/" target="_blank" style="transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/facebook.png" alt="Facebook" style="width:32px; height:32px; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    </a>
+                    <a href="https://www.instagram.com/bambooconsept.mk/" target="_blank" style="transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">
+                        <img src="images/social.png" alt="Instagram" style="width:32px; height:32px; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="footer__bottom">
+                <p data-i18n="footer.copyright" data-i18n-params='{"year": "2024"}'>© 2024 Bamboo Concept. All rights reserved.</p>
+                <div style="display:flex; gap:var(--space-4); align-items:center;">
+                    <a href="privacy.html" style="color:var(--white); opacity:0.8;" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="terms.html" style="color:var(--white); opacity:0.8;" data-i18n="footer.terms">Terms of Service</a>
+                    <span style="opacity: 0.6; font-size: 0.85em; margin-left: 20px;">Created by <a href="#" style="color:var(--bamboo-gold); text-decoration:none;">FS Digital</a></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/i18n.js"></script>
+    
+    <script src="js/firebase-config.js"></script>
+    <script src="js/firebase-service.js"></script>
+    <script src="js/productsData.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

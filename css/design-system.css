@@ -1,0 +1,322 @@
+/* ==========================================================================
+   DESIGN SYSTEM - Bamboo Concept (Premium Modern Edition)
+   ========================================================================== */
+
+/* --- Custom Properties (Tokens) --- */
+:root {
+  /* Brand Palette */
+  --bamboo-tan: #95836C;
+  --bamboo-gold: #C8A771;
+  --moss: #6E7F5B;
+  --charcoal: #2F2F2F;
+  --cream: #E8E0D6;
+
+  /* Derived & Shades */
+  --bamboo-tan-light: #A89880;
+  --bamboo-gold-light: #D4BA8A;
+  --moss-light: #8B9F7A;
+  --cream-dark: #DDD5C9;
+  --white: #FFFFFF;
+  --off-white: #FAF9F7;
+  --error: #C85C5C;
+  --overlay: rgba(47, 47, 47, 0.4);
+
+  /* Modern Effects */
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.3);
+  --glass-blur: blur(16px);
+  
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 12px 32px rgba(47, 47, 47, 0.08);
+  --shadow-lg: 0 24px 48px rgba(47, 47, 47, 0.12);
+  --shadow-glow: 0 8px 24px rgba(200, 167, 113, 0.25);
+
+  /* Typography */
+  --font-heading: 'League Spartan', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+
+  /* Fluid Typography Scale (Mobile -> Desktop) */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);
+  --text-xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  --text-2xl: clamp(2rem, 1.6rem + 2vw, 3rem);
+  --text-3xl: clamp(2.5rem, 2rem + 2.5vw, 4rem);
+  --text-4xl: clamp(3rem, 2.5rem + 4vw, 5.5rem);
+
+  /* Spacing Scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* Organic Radii */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+  --radius-organic: 24px 8px 24px 8px; /* Asymmetrical nature feel */
+
+  /* Transitions */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --trans-fast: 0.2s var(--ease-smooth);
+  --trans-normal: 0.3s var(--ease-smooth);
+  --trans-slow: 0.5s var(--ease-smooth);
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--charcoal);
+  background-color: var(--off-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+
+  padding-top: 75px;
+}
+
+img, picture, svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--trans-fast);
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: var(--text-4xl); font-weight: 700; }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+
+p {
+  margin-bottom: var(--space-4);
+  color: rgba(47, 47, 47, 0.8);
+}
+
+/* --- Layout Utilities --- */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+@media (min-width: 768px) {
+  .container { padding: 0 var(--space-8); }
+}
+
+.section {
+  padding: var(--space-16) 0;
+}
+@media (min-width: 1024px) {
+  .section { padding: var(--space-24) 0; }
+}
+
+.section__title {
+  text-align: center;
+  margin-bottom: var(--space-12);
+  position: relative;
+}
+/* Tiny leaf/accent dot under section titles */
+.section__title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 4px;
+  background: var(--bamboo-gold);
+  border-radius: var(--radius-pill);
+  margin: var(--space-4) auto 0;
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-6);
+}
+.grid--2 { grid-template-columns: 1fr; }
+.grid--3 { grid-template-columns: 1fr; }
+.grid--4 { grid-template-columns: 1fr; }
+
+@media (min-width: 768px) {
+  .grid--2 { grid-template-columns: repeat(2, 1fr); gap: var(--space-8); }
+  .grid--3 { grid-template-columns: repeat(2, 1fr); gap: var(--space-8); }
+  .grid--4 { grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+}
+@media (min-width: 1024px) {
+  .grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .grid--4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+.flex { display: flex; }
+.flex--center { align-items: center; justify-content: center; }
+.flex--between { align-items: center; justify-content: space-between; }
+.flex--col { flex-direction: column; }
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--trans-normal);
+  text-align: center;
+  gap: var(--space-2);
+  line-height: 1;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn--primary {
+  background-color: var(--charcoal);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+.btn--primary:hover:not(:disabled) {
+  background-color: var(--bamboo-gold);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn--secondary {
+  background-color: var(--moss);
+  color: var(--white);
+}
+.btn--secondary:hover:not(:disabled) {
+  background-color: var(--moss-light);
+  transform: translateY(-2px);
+}
+
+.btn--outline {
+  background-color: transparent;
+  border-color: var(--charcoal);
+  color: var(--charcoal);
+}
+.btn--outline:hover:not(:disabled) {
+  background-color: var(--charcoal);
+  color: var(--white);
+}
+
+.btn--icon {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--charcoal);
+}
+.btn--icon:hover {
+  background: var(--bamboo-gold);
+  color: var(--white);
+  transform: scale(1.05);
+}
+
+/* --- Forms --- */
+.form-group {
+  margin-bottom: var(--space-4);
+}
+.form-group__label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  color: var(--charcoal);
+}
+.form-group__input,
+.form-group__textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--white);
+  border: 1px solid #ddd;
+  border-radius: var(--radius-md);
+  font-size: 16px; /* Prevents iOS zoom */
+  transition: var(--trans-fast);
+  color: var(--charcoal);
+}
+.form-group__input:focus,
+.form-group__textarea:focus {
+  outline: none;
+  border-color: var(--bamboo-gold);
+  box-shadow: 0 0 0 3px rgba(200, 167, 113, 0.2);
+}
+.form-group__input--error {
+  border-color: var(--error);
+}
+.form-group__input--error:focus {
+  box-shadow: 0 0 0 3px rgba(200, 92, 92, 0.2);
+}
+.form-group__error {
+  color: var(--error);
+  font-size: var(--text-xs);
+  margin-top: var(--space-1);
+  display: none;
+}
+
+/* --- Badges --- */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius-pill);
+  background: var(--cream);
+  color: var(--charcoal);
+}
+.badge--sale { background: var(--error); color: white; }
+.badge--new { background: var(--bamboo-gold); color: white; }
+.badge--eco { background: var(--moss); color: white; }
+
+/* Utilities */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;
+}
+.text-center { text-align: center; }
