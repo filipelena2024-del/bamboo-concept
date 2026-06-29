@@ -14,6 +14,26 @@
     let localProductsCache = [];
     let isInitialized = false;
 
+    // Helper to sanitize and ensure all product image paths use the correct .webp extension
+    function sanitizeProductImageExtensions(products) {
+        if (!Array.isArray(products)) return [];
+        return products.map(p => {
+            if (p.images && Array.isArray(p.images)) {
+                p.images = p.images.map(img => typeof img === 'string' ? img.replace(/\.jpg$/i, '.webp') : img);
+            }
+            // Also clean variants if present
+            if (p.variants && Array.isArray(p.variants)) {
+                p.variants = p.variants.map(v => {
+                    if (v.image && typeof v.image === 'string') {
+                        v.image = v.image.replace(/\.jpg$/i, '.webp');
+                    }
+                    return v;
+                });
+            }
+            return p;
+        });
+    }
+
     // Helper to initialize products from Firebase or LocalStorage fallback
     async function initializeProducts() {
         if (isInitialized) return;
@@ -23,8 +43,9 @@
             // First let's check if Firebase service is ready
             if (window.BambooShop.firebase && window.BambooShop.firebase.getProducts) {
 
-                const products = await window.BambooShop.firebase.getProducts();
+                let products = await window.BambooShop.firebase.getProducts();
                 if (products && products.length > 0) {
+                    products = sanitizeProductImageExtensions(products);
                     localProductsCache = products;
                     // Keep localStorage updated as fallback cache
                     BambooShop.utils.safeLocalStorage.set(STORAGE_KEY, products);
@@ -40,8 +61,12 @@
         // Fallback: load seed/local storage
 
         let stored = BambooShop.utils.safeLocalStorage.get(STORAGE_KEY);
-        if (!stored || stored.length === 0) {
-            stored = window.BAMBOO_PRODUCTS_DATA || [];
+        // Force replace .jpg with .webp in local storage cache
+        if (stored && stored.length > 0) {
+            stored = sanitizeProductImageExtensions(stored);
+            BambooShop.utils.safeLocalStorage.set(STORAGE_KEY, stored);
+        } else {
+            stored = sanitizeProductImageExtensions(window.BAMBOO_PRODUCTS_DATA || []);
             BambooShop.utils.safeLocalStorage.set(STORAGE_KEY, stored);
         }
         localProductsCache = stored;
