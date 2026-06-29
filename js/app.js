@@ -116,7 +116,7 @@
                 </div>
                 <div class="cookie-banner__actions">
                     <button class="btn btn--primary" id="cookie-accept" data-i18n="cookie.accept">Accept</button>
-                    <button class="btn btn--outline" style="border-color: rgba(255,255,255,0.3); color: white;" id="cookie-decline" data-i18n="cookie.decline">Decline</button>
+                    <button class="btn btn--ghost" style="color: var(--white); opacity: 0.6; font-size: 0.85rem; text-decoration: underline; background: transparent; border: none; padding: var(--space-1) var(--space-2);" id="cookie-decline" data-i18n="cookie.decline">Decline</button>
                 </div>
             `;
 
