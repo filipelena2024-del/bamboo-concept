@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "id": "prod_1",
     "name": "Јаден Сет",
@@ -20,7 +20,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/ЈАДЕН СЕТ.jpg"
+      "productimages/ЈАДЕН СЕТ.webp"
     ],
     "isFeatured": true,
     "isOnSale": false,
@@ -51,7 +51,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/АКРОПОЛИС СЕТ.jpg"
+      "productimages/АКРОПОЛИС СЕТ.webp"
     ],
     "isFeatured": true,
     "isOnSale": false,
@@ -82,7 +82,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/АТИНА СЕТ.jpg"
+      "productimages/АТИНА СЕТ.webp"
     ],
     "isFeatured": true,
     "isOnSale": false,
@@ -113,7 +113,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/БАСИЕНТ ЗА БЕБЕ АБ.jpg"
+      "productimages/БАСИЕНТ ЗА БЕБЕ АБ.webp"
     ],
     "isFeatured": true,
     "isOnSale": false,
@@ -144,7 +144,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/БАСИЕНТ ЗА БЕБЕ БГ.jpg"
+      "productimages/БАСИЕНТ ЗА БЕБЕ БГ.webp"
     ],
     "isFeatured": true,
     "isOnSale": false,
@@ -175,7 +175,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/БАСИЕНТ ЗА БЕБЕ.jpg"
+      "productimages/БАСИЕНТ ЗА БЕБЕ.webp"
     ],
     "isFeatured": true,
     "isOnSale": false,
@@ -206,7 +206,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/ГОЛФ АБ.jpg"
+      "productimages/ГОЛФ АБ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -237,7 +237,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/ГОЛФ БГ.jpg"
+      "productimages/ГОЛФ БГ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -268,7 +268,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/ДАРПА СТОЛ ВГ.jpg"
+      "productimages/ДАРПА СТОЛ ВГ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -299,7 +299,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/ДАРПА СТООЛ АБ.jpg"
+      "productimages/ДАРПА СТООЛ АБ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -330,7 +330,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/ЕРЛИС ПРЕМИУМ.jpg"
+      "productimages/ЕРЛИС ПРЕМИУМ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -361,7 +361,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/КАСАБЛАНКА СЕТ.jpg"
+      "productimages/КАСАБЛАНКА СЕТ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -392,7 +392,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/КОРПА БАСЕКТ С-М-Л.jpg"
+      "productimages/КОРПА БАСЕКТ С-М-Л.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -423,7 +423,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/КОРПА СО КАПАК 1.jpg"
+      "productimages/КОРПА СО КАПАК 1.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -454,7 +454,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/КОРПА СО КАПАК 2.jpg"
+      "productimages/КОРПА СО КАПАК 2.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -485,7 +485,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/КРЕНАР СЕТ.jpg"
+      "productimages/КРЕНАР СЕТ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -516,7 +516,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/МОНАЛИСА АБ.jpg"
+      "productimages/МОНАЛИСА АБ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -547,7 +547,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/МОНАЛИСА ВГ.jpg"
+      "productimages/МОНАЛИСА ВГ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -578,7 +578,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/НАНДА АБ.jpg"
+      "productimages/НАНДА АБ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -609,7 +609,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/НАНДА ВГ.jpg"
+      "productimages/НАНДА ВГ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -640,7 +640,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/НОВО Е НЗ.jpg"
+      "productimages/НОВО Е НЗ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -671,7 +671,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/ПАЛМ СЕТ.jpg"
+      "productimages/ПАЛМ СЕТ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -702,7 +702,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/ПАМУКАЛЕ.jpg"
+      "productimages/ПАМУКАЛЕ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -731,19 +731,19 @@
       "height": "100cm"
     },
     "images": [
-      "productimages/ПАПАСАН АБ - БЕЛА.jpg",
-      "productimages/ПАПАСАН АБ - ЖОЛТА.jpg"
+      "productimages/ПАПАСАН АБ - БЕЛА.webp",
+      "productimages/ПАПАСАН АБ - ЖОЛТА.webp"
     ],
     "variants": [
       {
         "label": "Бела",
         "color": "#F5F5F0",
-        "image": "productimages/ПАПАСАН АБ - БЕЛА.jpg"
+        "image": "productimages/ПАПАСАН АБ - БЕЛА.webp"
       },
       {
         "label": "Жолта",
         "color": "#F4C542",
-        "image": "productimages/ПАПАСАН АБ - ЖОЛТА.jpg"
+        "image": "productimages/ПАПАСАН АБ - ЖОЛТА.webp"
       }
     ],
     "isFeatured": false,
@@ -773,19 +773,19 @@
       "height": "100cm"
     },
     "images": [
-      "productimages/ПАПАСАН ВГ - БЕЛА.jpg",
-      "productimages/ПАПАСАН ВГ - ЖОЛТА.jpg"
+      "productimages/ПАПАСАН ВГ - БЕЛА.webp",
+      "productimages/ПАПАСАН ВГ - ЖОЛТА.webp"
     ],
     "variants": [
       {
         "label": "Бела",
         "color": "#F5F5F0",
-        "image": "productimages/ПАПАСАН ВГ - БЕЛА.jpg"
+        "image": "productimages/ПАПАСАН ВГ - БЕЛА.webp"
       },
       {
         "label": "Жолта",
         "color": "#F4C542",
-        "image": "productimages/ПАПАСАН ВГ - ЖОЛТА.jpg"
+        "image": "productimages/ПАПАСАН ВГ - ЖОЛТА.webp"
       }
     ],
     "isFeatured": false,
@@ -817,7 +817,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/ПЛАНТЕР 1.jpg"
+      "productimages/ПЛАНТЕР 1.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -848,7 +848,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/ПЛАНТЕР 3.jpg"
+      "productimages/ПЛАНТЕР 3.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -879,7 +879,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/ПРИКО БГ.jpg"
+      "productimages/ПРИКО БГ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -910,7 +910,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/САГИТА СТОЛИЦА.jpg"
+      "productimages/САГИТА СТОЛИЦА.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -941,7 +941,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/САЛАСМИРНИ СЕТ.jpg"
+      "productimages/САЛАСМИРНИ СЕТ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -972,7 +972,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/СЕЛОВА СЕТ.jpg"
+      "productimages/СЕЛОВА СЕТ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -1003,7 +1003,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/СМИРНИ СЕТ.jpg"
+      "productimages/СМИРНИ СЕТ.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
@@ -1034,7 +1034,7 @@
       "weight": "12kg"
     },
     "images": [
-      "productimages/ФИОКИ БАМБУС.jpg"
+      "productimages/ФИОКИ БАМБУС.webp"
     ],
     "isFeatured": false,
     "isOnSale": false,
