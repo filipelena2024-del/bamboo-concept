@@ -114,9 +114,11 @@
             });
 
             // Update language switcher UI
+            // Display labels: internal code 'sq' shows as 'AL' (Albanian), not 'SQ' which is offensive
+            const LANG_DISPLAY = { mk: 'MK', en: 'EN', sq: 'AL' };
             const currentLangLabel = document.getElementById('current-lang-label');
             if (currentLangLabel) {
-                currentLangLabel.textContent = currentLang.toUpperCase();
+                currentLangLabel.textContent = LANG_DISPLAY[currentLang] || currentLang.toUpperCase();
             }
 
             // Update currency switcher UI
