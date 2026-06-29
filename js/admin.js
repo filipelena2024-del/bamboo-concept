@@ -377,31 +377,104 @@
                 <h4>Items</h4>
                 ${itemsHtml}
                 
-                <div style="margin-top:24px; display:flex; gap:8px">
-                    <button class="btn btn--secondary" onclick="adminController.updateOrderStatus('${o.id}', 'processing')">Mark Processing</button>
-                    <button class="btn btn--primary" onclick="adminController.updateOrderStatus('${o.id}', 'delivered')">Mark Delivered</button>
-                    <button class="btn btn--outline" style="color:var(--error);border-color:var(--error)" onclick="adminController.updateOrderStatus('${o.id}', 'cancelled')">Cancel</button>
+                <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap">
+                    ${o.status !== 'processing' && o.status !== 'delivered' && o.status !== 'cancelled' ? `<button class="btn btn--secondary" onclick="adminController.updateOrderStatus('${o.id}', 'processing')">Mark Processing</button>` : ''}
+                    ${o.status !== 'delivered' && o.status !== 'cancelled' ? `<button class="btn btn--primary" onclick="adminController.updateOrderStatus('${o.id}', 'delivered')">Mark Delivered</button>` : ''}
+                    ${o.status !== 'cancelled' ? `<button class="btn btn--outline" style="color:var(--error);border-color:var(--error)" onclick="adminController.updateOrderStatus('${o.id}', 'cancelled')">Cancel Order</button>` : ''}
+                    <button class="btn btn--outline" style="color:var(--error);border-color:var(--error);margin-left:auto" onclick="adminController.deleteOrder('${o.id}')">🗑️ Delete</button>
                 </div>
             `;
 
             modal.classList.add('modal--active');
         },
 
-        updateOrderStatus: function(id, status) {
+        updateOrderStatus: async function(id, status) {
             const orders = BambooShop.utils.safeLocalStorage.get('bamboo_orders') || [];
             const index = orders.findIndex(x => x.id === id);
-            if (index !== -1) {
-                orders[index].status = status;
-                BambooShop.utils.safeLocalStorage.set('bamboo_orders', orders);
-                
-                // Update Firestore if available
-                if (window.BambooShop.firebase && window.BambooShop.firebase.updateOrderStatus) {
-                    window.BambooShop.firebase.updateOrderStatus(id, status).catch(e => console.error("Firestore order update failed", e));
-                }
+            if (index === -1) return;
 
-                BambooShop.ui.showToast('Order updated', 'success');
-                document.getElementById('admin-order-modal').classList.remove('modal--active');
-                this.renderOrders();
+            const order = orders[index];
+            const previousStatus = order.status;
+            order.status = status;
+            BambooShop.utils.safeLocalStorage.set('bamboo_orders', orders);
+
+            // Update Firestore if available
+            if (window.BambooShop.firebase && window.BambooShop.firebase.updateOrderStatus) {
+                window.BambooShop.firebase.updateOrderStatus(id, status).catch(e => console.error('Firestore order update failed', e));
+            }
+
+            // If cancelling an active order, restore stock for every item
+            const wasActive = previousStatus !== 'cancelled' && previousStatus !== 'delivered';
+            if (status === 'cancelled' && wasActive) {
+                await this._restoreOrderStock(order);
+            }
+
+            BambooShop.ui.showToast('Order updated', 'success');
+            document.getElementById('admin-order-modal').classList.remove('modal--active');
+            this.renderOrders();
+            this.renderDashboard();
+        },
+
+        deleteOrder: async function(id) {
+            if (!confirm('Are you sure you want to permanently delete this order? This cannot be undone.')) return;
+
+            const orders = BambooShop.utils.safeLocalStorage.get('bamboo_orders') || [];
+            const order = orders.find(x => x.id === id);
+            if (!order) return;
+
+            // Restore stock if the order was NOT already cancelled or delivered
+            const wasActive = order.status !== 'cancelled' && order.status !== 'delivered';
+            if (wasActive) {
+                await this._restoreOrderStock(order);
+            }
+
+            // Remove from localStorage
+            const updated = orders.filter(x => x.id !== id);
+            BambooShop.utils.safeLocalStorage.set('bamboo_orders', updated);
+
+            BambooShop.ui.showToast('Order deleted', 'success');
+            document.getElementById('admin-order-modal').classList.remove('modal--active');
+            this.renderOrders();
+            this.renderDashboard();
+        },
+
+        // Internal helper: increment stock back for every item in an order
+        _restoreOrderStock: async function(order) {
+            if (!order.items || !BambooShop.products) return;
+            await Promise.all(
+                order.items.map(item => {
+                    // Restore quantity to the product's stock
+                    const product = BambooShop.products.getById(item.productId);
+                    if (!product) return Promise.resolve();
+
+                    const currentStock = typeof product.stock !== 'undefined' ? product.stock : 0;
+                    const restoredStock = currentStock + item.quantity;
+
+                    // Update local cache
+                    const all = BambooShop.products.getAll();
+                    const idx = all.findIndex(p => p.id === item.productId);
+                    if (idx !== -1) {
+                        all[idx].stock = restoredStock;
+                        all[idx].isAvailable = restoredStock > 0;
+                        // Sync local cache (internal detail of products module — we do it via save)
+                    }
+
+                    // Push to Firestore atomically
+                    if (window.BambooShop.firebase && window.BambooShop.firebase.decrementStock) {
+                        // decrementStock with a negative number = increment
+                        return window.BambooShop.firebase.decrementStock(item.productId, -item.quantity)
+                            .catch(e => console.error('Stock restore failed for', item.productId, e));
+                    }
+                    return Promise.resolve();
+                })
+            );
+            // Re-initialize products from Firestore so local cache refreshes
+            if (window.BambooShop.firebase && window.BambooShop.firebase.getProducts) {
+                window.BambooShop.firebase.getProducts().then(products => {
+                    if (products && products.length > 0) {
+                        BambooShop.utils.safeLocalStorage.set('bamboo_products', products);
+                    }
+                }).catch(() => {});
             }
         }
     };

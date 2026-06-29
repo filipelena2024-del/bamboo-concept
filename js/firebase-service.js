@@ -2,16 +2,6 @@
     'use strict';
     window.BambooShop = window.BambooShop || {};
 
-    const config = {
-        apiKey: "AIzaSyB54a0PckU7Sis3fB4y10EbOPMDh_louI8",
-        authDomain: "bamboo-concept.firebaseapp.com",
-        projectId: "bamboo-concept",
-        storageBucket: "bamboo-concept.firebasestorage.app",
-        messagingSenderId: "158461070278",
-        appId: "1:158461070278:web:d52e95afc46b34b1e6c0c7",
-        measurementId: "G-TTFF5GEKG1"
-    };
-
     // Load Firebase Scripts dynamically from CDN using standard non-module script tag approach
     function loadScript(url) {
         return new Promise((resolve, reject) => {
@@ -25,13 +15,30 @@
 
     async function initFirebaseLegacy() {
         try {
+            // Load the git-ignored config file containing API keys
+            try {
+                await loadScript("js/config.js");
+            } catch (err) {
+                console.warn("js/config.js could not be loaded dynamically. Falling back to window.BambooShopConfig.", err);
+            }
+
+            const firebaseConfig = (window.BambooShopConfig && window.BambooShopConfig.firebase) || {
+                apiKey: "",
+                authDomain: "",
+                projectId: "",
+                storageBucket: "",
+                messagingSenderId: "",
+                appId: "",
+                measurementId: ""
+            };
+
             // Load app, auth, and firestore SDK compat/classic versions
             await loadScript("https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js");
             await loadScript("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js");
             await loadScript("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js");
 
             // Initialize compat SDK
-            const firebaseApp = firebase.initializeApp(config);
+            const firebaseApp = firebase.initializeApp(firebaseConfig);
             const auth = firebase.auth();
             const db = firebase.firestore();
 
@@ -73,16 +80,23 @@
                 },
                 decrementStock: async (productId, quantity) => {
                     const ref = db.collection("products").doc(productId);
-                    // Use Firestore atomic increment to safely reduce stock
+                    // Use Firestore atomic increment to safely adjust stock
+                    // quantity > 0 = reduce (order placed), quantity < 0 = restore (order cancelled/deleted)
                     await ref.update({
                         stock: firebase.firestore.FieldValue.increment(-quantity)
                     });
-                    // Read back to check if stock reached 0 and update isAvailable accordingly
+                    // Read back to update isAvailable based on real stock value
                     const snap = await ref.get();
                     if (snap.exists) {
                         const newStock = snap.data().stock;
-                        if (typeof newStock !== 'undefined' && newStock <= 0) {
-                            await ref.update({ stock: 0, isAvailable: false });
+                        if (typeof newStock !== 'undefined') {
+                            if (newStock <= 0) {
+                                // Clamp to 0 and mark unavailable
+                                await ref.update({ stock: 0, isAvailable: false });
+                            } else {
+                                // Stock is positive — ensure isAvailable is true (handles restored orders)
+                                await ref.update({ isAvailable: true });
+                            }
                         }
                     }
                 }
