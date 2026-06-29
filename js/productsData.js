@@ -714,8 +714,8 @@ window.BAMBOO_PRODUCTS_DATA = [
   },
   {
     "id": "prod_24",
-    "name": "Папасан Аб - Бела",
-    "slug": "папасан-аб-бела",
+    "name": "Папасан Аб",
+    "slug": "папасан-аб",
     "category": "rocking_chairs",
     "price": 14500,
     "salePrice": null,
@@ -728,56 +728,36 @@ window.BAMBOO_PRODUCTS_DATA = [
     ],
     "dimensions": {
       "width": "80cm",
-      "height": "100cm",
-      "depth": "80cm",
-      "weight": "12kg"
+      "height": "100cm"
     },
     "images": [
-      "productimages/ПАПАСАН АБ - БЕЛА.jpg"
-    ],
-    "isFeatured": false,
-    "isOnSale": false,
-    "isAvailable": true,
-    "rating": 4.5,
-    "reviewCount": 0,
-    "createdAt": 1782654201826,
-    "stock": 10
-  },
-  {
-    "id": "prod_25",
-    "name": "Папасан Аб - Жолта",
-    "slug": "папасан-аб-жолта",
-    "category": "rocking_chairs",
-    "price": 14500,
-    "salePrice": null,
-    "description": "Премиум рачно изработен производ од бамбус и ратан. Совршен за вашиот дом или двор.",
-    "features": [
-      "100% природен бамбус и ратан",
-      "Рачна изработка од искусни мајстори",
-      "Висока издржливост и долготрајност",
-      "Лесно одржување"
-    ],
-    "dimensions": {
-      "width": "80cm",
-      "height": "100cm",
-      "depth": "80cm",
-      "weight": "12kg"
-    },
-    "images": [
+      "productimages/ПАПАСАН АБ - БЕЛА.jpg",
       "productimages/ПАПАСАН АБ - ЖОЛТА.jpg"
     ],
+    "variants": [
+      {
+        "label": "Бела",
+        "color": "#F5F5F0",
+        "image": "productimages/ПАПАСАН АБ - БЕЛА.jpg"
+      },
+      {
+        "label": "Жолта",
+        "color": "#F4C542",
+        "image": "productimages/ПАПАСАН АБ - ЖОЛТА.jpg"
+      }
+    ],
     "isFeatured": false,
     "isOnSale": false,
     "isAvailable": true,
+    "stock": 10,
     "rating": 4.5,
     "reviewCount": 0,
-    "createdAt": 1782654141826,
-    "stock": 10
+    "createdAt": 1782654201826
   },
   {
     "id": "prod_26",
-    "name": "Папасан Вг - Бела",
-    "slug": "папасан-вг-бела",
+    "name": "Папасан Вг",
+    "slug": "папасан-вг",
     "category": "rocking_chairs",
     "price": 14500,
     "salePrice": null,
@@ -790,51 +770,31 @@ window.BAMBOO_PRODUCTS_DATA = [
     ],
     "dimensions": {
       "width": "80cm",
-      "height": "100cm",
-      "depth": "80cm",
-      "weight": "12kg"
+      "height": "100cm"
     },
     "images": [
-      "productimages/ПАПАСАН ВГ - БЕЛА.jpg"
-    ],
-    "isFeatured": false,
-    "isOnSale": false,
-    "isAvailable": true,
-    "rating": 4.5,
-    "reviewCount": 0,
-    "createdAt": 1782654081826,
-    "stock": 10
-  },
-  {
-    "id": "prod_27",
-    "name": "Папасан Вг - Жолта",
-    "slug": "папасан-вг-жолта",
-    "category": "rocking_chairs",
-    "price": 14500,
-    "salePrice": null,
-    "description": "Премиум рачно изработен производ од бамбус и ратан. Совршен за вашиот дом или двор.",
-    "features": [
-      "100% природен бамбус и ратан",
-      "Рачна изработка од искусни мајстори",
-      "Висока издржливост и долготрајност",
-      "Лесно одржување"
-    ],
-    "dimensions": {
-      "width": "80cm",
-      "height": "100cm",
-      "depth": "80cm",
-      "weight": "12kg"
-    },
-    "images": [
+      "productimages/ПАПАСАН ВГ - БЕЛА.jpg",
       "productimages/ПАПАСАН ВГ - ЖОЛТА.jpg"
     ],
+    "variants": [
+      {
+        "label": "Бела",
+        "color": "#F5F5F0",
+        "image": "productimages/ПАПАСАН ВГ - БЕЛА.jpg"
+      },
+      {
+        "label": "Жолта",
+        "color": "#F4C542",
+        "image": "productimages/ПАПАСАН ВГ - ЖОЛТА.jpg"
+      }
+    ],
     "isFeatured": false,
     "isOnSale": false,
     "isAvailable": true,
+    "stock": 10,
     "rating": 4.5,
     "reviewCount": 0,
-    "createdAt": 1782654021826,
-    "stock": 10
+    "createdAt": 1782654081826
   },
   {
     "id": "prod_28",

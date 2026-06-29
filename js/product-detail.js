@@ -147,9 +147,9 @@
             variantsWrapper.style.display = 'block';
 
             // Select first variant by default
-            let activeVariant = p.variants[0];
-            if (selectedLabel) selectedLabel.textContent = activeVariant.label;
-            if (mainImg) mainImg.src = activeVariant.image;
+            this.selectedVariant = p.variants[0];
+            if (selectedLabel) selectedLabel.textContent = this.selectedVariant.label;
+            if (mainImg) mainImg.src = this.selectedVariant.image;
 
             // Hide regular thumbnails — swatches replace them
             if (thumbsContainer) thumbsContainer.style.display = 'none';
@@ -197,7 +197,7 @@
 
                     // Update selected label
                     if (selectedLabel) selectedLabel.textContent = variant.label;
-                    activeVariant = variant;
+                    this.selectedVariant = variant;
                 });
 
                 swatchesContainer.appendChild(swatch);
@@ -254,7 +254,8 @@
                     addBtn.disabled = true;
                     addBtn.innerHTML = `<span class="spinner" style="width:16px;height:16px;border-width:2px;border-top-color:var(--charcoal);"></span>`;
                     
-                    BambooShop.cart.addItem(this.product.id, qty);
+                    const variantLabel = this.selectedVariant ? this.selectedVariant.label : '';
+                    BambooShop.cart.addItem(this.product.id, qty, variantLabel);
                     
                     setTimeout(() => {
                         addBtn.innerHTML = originalHtml;

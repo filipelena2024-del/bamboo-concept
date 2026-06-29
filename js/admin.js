@@ -369,6 +369,11 @@
                         <strong>Address:</strong> ${BambooShop.utils.sanitizeHTML(o.customer.address)}, ${BambooShop.utils.sanitizeHTML(o.customer.city)}
                     </div>
                 </div>
+                ${o.customer.notes ? `
+                <div style="background-color: #f7f5f0; padding: 12px 16px; border-radius: 8px; margin-bottom: 24px; border-left: 4px solid var(--bamboo-gold); font-size: 0.95rem; line-height: 1.5; color: var(--charcoal);">
+                    <strong data-i18n="admin.order_notes">Забелешки:</strong> ${BambooShop.utils.sanitizeHTML(o.customer.notes)}
+                </div>
+                ` : ''}
                 <h4>Items</h4>
                 ${itemsHtml}
                 

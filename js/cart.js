@@ -22,19 +22,37 @@
         },
 
         getItems: function() {
-            // Populate with full product details
+            // Populate with full product details and apply variant modifications
             return cartItems.map(item => {
                 const product = BambooShop.products.getById(item.productId);
                 if (!product) return null; // Product was deleted from store
+                
+                let itemName = product.name;
+                let itemImages = [...(product.images || [])];
+                
+                if (item.variantLabel && product.variants) {
+                    const variant = product.variants.find(v => v.label === item.variantLabel);
+                    if (variant) {
+                        itemName = `${product.name} - ${variant.label}`;
+                        if (variant.image) {
+                            // Insert variant image at the beginning of the images list
+                            itemImages = [variant.image, ...itemImages.filter(img => img !== variant.image)];
+                        }
+                    }
+                }
+                
                 return {
                     ...product,
+                    name: itemName,
+                    images: itemImages,
                     quantity: item.quantity,
-                    cartItemId: item.productId // Using productId as cartItemId since we group them
+                    variantLabel: item.variantLabel || '',
+                    cartItemId: `${item.productId}_${item.variantLabel || 'default'}`
                 };
             }).filter(item => item !== null);
         },
 
-        addItem: function(productId, quantity = 1) {
+        addItem: function(productId, quantity = 1, variantLabel = '') {
             // Check if product exists and is available
             const product = BambooShop.products.getById(productId);
             if (!product || !product.isAvailable) {
@@ -42,12 +60,16 @@
                 return false;
             }
 
-            const existingItem = cartItems.find(item => item.productId === productId);
+            const existingItem = cartItems.find(item => item.productId === productId && (item.variantLabel || '') === variantLabel);
             if (existingItem) {
                 // Limit max quantity to 99
                 existingItem.quantity = Math.min(99, existingItem.quantity + quantity);
             } else {
-                cartItems.push({ productId, quantity: Math.min(99, Math.max(1, quantity)) });
+                cartItems.push({ 
+                    productId, 
+                    quantity: Math.min(99, Math.max(1, quantity)),
+                    variantLabel: variantLabel || ''
+                });
             }
 
             this.save();
@@ -64,21 +86,27 @@
             return true;
         },
 
-        removeItem: function(productId) {
-            cartItems = cartItems.filter(item => item.productId !== productId);
+        removeItem: function(cartItemId) {
+            cartItems = cartItems.filter(item => {
+                const itemKey = `${item.productId}_${item.variantLabel || 'default'}`;
+                return itemKey !== cartItemId;
+            });
             this.save();
             this.showToast('cart.item_removed', 'info');
         },
 
-        updateQuantity: function(productId, quantity) {
+        updateQuantity: function(cartItemId, quantity) {
             const qty = parseInt(quantity, 10);
             
             if (isNaN(qty) || qty <= 0) {
-                this.removeItem(productId);
+                this.removeItem(cartItemId);
                 return;
             }
 
-            const item = cartItems.find(i => i.productId === productId);
+            const item = cartItems.find(item => {
+                const itemKey = `${item.productId}_${item.variantLabel || 'default'}`;
+                return itemKey === cartItemId;
+            });
             if (item) {
                 item.quantity = Math.min(99, qty);
                 this.save();

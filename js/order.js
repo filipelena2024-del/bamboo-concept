@@ -49,19 +49,25 @@
                 const displayPrice = BambooShop.i18n.formatPriceDisplay(price);
                 const imageUrl = item.images && item.images.length > 0 ? item.images[0] : 'assets/images/placeholder.jpg';
                 
+                const isOutOfStock = typeof item.stock !== 'undefined' ? item.stock <= 0 : !item.isAvailable;
+                const stockWarning = isOutOfStock 
+                    ? `<span style="color:var(--error); font-weight:600; font-size:0.85rem; display:block; margin-top:4px;" data-i18n="product.out_of_stock">Нема залиха</span>` 
+                    : '';
+                
                 html += `
                     <div class="cart-item">
                         <img src="${BambooShop.utils.sanitizeHTML(imageUrl)}" alt="${BambooShop.utils.sanitizeHTML(item.name)}" class="cart-item__image">
                         <div class="cart-item__details">
                             <h4 class="cart-item__name">${BambooShop.utils.sanitizeHTML(item.name)}</h4>
                             <div class="cart-item__price">${displayPrice}</div>
+                            ${stockWarning}
                             <div class="cart-item__controls">
                                 <div class="cart-item__qty">
-                                    <button type="button" class="cart-item__qty-btn js-qty-minus" data-id="${item.id}">-</button>
-                                    <input type="number" class="cart-item__qty-input js-qty-input" data-id="${item.id}" value="${item.quantity}" min="1" max="99">
-                                    <button type="button" class="cart-item__qty-btn js-qty-plus" data-id="${item.id}">+</button>
+                                    <button type="button" class="cart-item__qty-btn js-qty-minus" data-id="${item.cartItemId}">-</button>
+                                    <input type="number" class="cart-item__qty-input js-qty-input" data-id="${item.cartItemId}" value="${item.quantity}" min="1" max="99">
+                                    <button type="button" class="cart-item__qty-btn js-qty-plus" data-id="${item.cartItemId}">+</button>
                                 </div>
-                                <button type="button" class="cart-item__remove js-remove-item" data-id="${item.id}" data-i18n="cart.remove"></button>
+                                <button type="button" class="cart-item__remove js-remove-item" data-id="${item.cartItemId}" data-i18n="cart.remove"></button>
                             </div>
                         </div>
                     </div>
@@ -189,7 +195,20 @@
                 const isCityValid = validateField(cityInput, 'required', 'order.required');
 
                 // Check cart not empty
-                if (BambooShop.cart.getItems().length === 0) return;
+                const items = BambooShop.cart.getItems();
+                if (items.length === 0) return;
+
+                // Check if any items are out of stock
+                const outOfStockItems = items.filter(i => (typeof i.stock !== 'undefined' ? i.stock <= 0 : !i.isAvailable));
+                if (outOfStockItems.length > 0) {
+                    const errorMsg = BambooShop.i18n ? BambooShop.i18n.t('cart.out_of_stock_detected') : 'Некои производи во вашата кошничка немаат залиха.';
+                    if (BambooShop.ui && typeof BambooShop.ui.showToast === 'function') {
+                        BambooShop.ui.showToast(errorMsg, 'error');
+                    } else {
+                        alert(errorMsg);
+                    }
+                    return;
+                }
 
                 if (isNameValid && isPhoneValid && isAddressValid && isCityValid) {
                     // Create Order
@@ -202,9 +221,10 @@
                         createdAt: Date.now(),
                         status: 'new',
                         totalMKD: BambooShop.cart.getTotal(),
-                        items: BambooShop.cart.getItems().map(i => ({
+                        items: items.map(i => ({
                             productId: i.id,
                             name: i.name,
+                            variantLabel: i.variantLabel || '',
                             quantity: i.quantity,
                             priceMKD: i.isOnSale && i.salePrice ? i.salePrice : i.price
                         })),

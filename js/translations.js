@@ -87,6 +87,7 @@
             'cart.checkout': 'Place Order',
             'cart.item_removed': 'Item removed from cart',
             'cart.updated': 'Cart updated',
+            'cart.out_of_stock_detected': 'Some items in your cart are out of stock. Please remove them before checkout.',
 
             'order.title': 'Delivery Information',
             'order.name': 'Full Name',
@@ -179,6 +180,7 @@
             'common.previous': 'Previous',
 
             'admin.title': 'Admin Panel',
+            'admin.order_notes': 'Order Notes',
             'admin.login': 'Admin Login',
             'admin.password': 'Password',
             'admin.enter': 'Enter',
@@ -318,6 +320,7 @@
             'cart.checkout': 'Направи Нарачка',
             'cart.item_removed': 'Производот е отстранет',
             'cart.updated': 'Кошничката е ажурирана',
+            'cart.out_of_stock_detected': 'Некои производи во вашата кошничка немаат залиха. Ве молиме отстранете ги пред да нарачате.',
 
             'order.title': 'Информации за Достава',
             'order.name': 'Име и Презиме',
@@ -410,6 +413,7 @@
             'common.previous': 'Претходно',
 
             'admin.title': 'Админ Панел',
+            'admin.order_notes': 'Забелешки',
             'admin.login': 'Најава',
             'admin.password': 'Лозинка',
             'admin.enter': 'Влези',
@@ -549,6 +553,7 @@
             'cart.checkout': 'Bëj Porosinë',
             'cart.item_removed': 'Produkti u hoq nga shporta',
             'cart.updated': 'Shporta u përditësua',
+            'cart.out_of_stock_detected': 'Disa artikuj në shportën tuaj janë jashtë stokut. Ju lutemi hiqni ata përpara se të kryeni porosinë.',
 
             'order.title': 'Informacioni i Dorëzimit',
             'order.name': 'Emri i Plotë',
@@ -641,6 +646,7 @@
             'common.previous': 'E Mëparshmja',
 
             'admin.title': 'Paneli i Admin',
+            'admin.order_notes': 'Shënime',
             'admin.login': 'Hyrja e Adminit',
             'admin.password': 'Fjalëkalimi',
             'admin.enter': 'Hyr',
