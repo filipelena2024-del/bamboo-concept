@@ -231,6 +231,34 @@
             return productData;
         },
 
+        /**
+         * Decrements stock for a product by the given quantity.
+         * Updates Firestore atomically and syncs the local in-memory cache.
+         * If stock reaches 0, sets isAvailable = false.
+         */
+        decrementStock: async function(productId, quantity) {
+            // 1. Update Firestore atomically
+            if (window.BambooShop.firebase && window.BambooShop.firebase.decrementStock) {
+                try {
+                    await window.BambooShop.firebase.decrementStock(productId, quantity);
+                } catch (err) {
+                    console.error('Firestore stock decrement failed:', err);
+                }
+            }
+
+            // 2. Update local cache immediately so UI reacts without a refresh
+            const all = this.getAll();
+            const index = all.findIndex(p => p.id === productId);
+            if (index !== -1) {
+                const currentStock = typeof all[index].stock !== 'undefined' ? all[index].stock : 0;
+                const newStock = Math.max(0, currentStock - quantity);
+                all[index].stock = newStock;
+                all[index].isAvailable = newStock > 0;
+                localProductsCache = all;
+                BambooShop.utils.safeLocalStorage.set(STORAGE_KEY, all);
+            }
+        },
+
         remove: async function(id) {
             // Remove from Firestore
             if (window.BambooShop.firebase && window.BambooShop.firebase.deleteProduct) {

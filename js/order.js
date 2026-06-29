@@ -245,7 +245,16 @@
                     BambooShop.utils.safeLocalStorage.set('bamboo_orders', savedOrders);
 
                     // Simulate API delay
-                    setTimeout(() => {
+                    setTimeout(async () => {
+                        // Decrement stock for every ordered item
+                        if (BambooShop.products && typeof BambooShop.products.decrementStock === 'function') {
+                            await Promise.all(
+                                items.map(item =>
+                                    BambooShop.products.decrementStock(item.id, item.quantity)
+                                )
+                            );
+                        }
+
                         // Clear Cart
                         BambooShop.cart.clear();
 

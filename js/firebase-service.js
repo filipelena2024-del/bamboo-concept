@@ -70,6 +70,21 @@
                 },
                 updateOrderStatus: async (id, status) => {
                     await db.collection("orders").doc(id).update({ status: status });
+                },
+                decrementStock: async (productId, quantity) => {
+                    const ref = db.collection("products").doc(productId);
+                    // Use Firestore atomic increment to safely reduce stock
+                    await ref.update({
+                        stock: firebase.firestore.FieldValue.increment(-quantity)
+                    });
+                    // Read back to check if stock reached 0 and update isAvailable accordingly
+                    const snap = await ref.get();
+                    if (snap.exists) {
+                        const newStock = snap.data().stock;
+                        if (typeof newStock !== 'undefined' && newStock <= 0) {
+                            await ref.update({ stock: 0, isAvailable: false });
+                        }
+                    }
                 }
             };
 
