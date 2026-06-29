@@ -1,12 +1,12 @@
 # Enable rewrite engine
 RewriteEngine On
 
-# 1. Redirect from URL.html to clean URL (external redirect)
-# Prevents duplicate URLs if someone types the .html manually
+# 1. Redirect users typing .html manually to the clean URL
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+(.+)\.html[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L]
 
-# 2. Map clean URL to URL.html internally (so server processes it)
+# 2. Silently rewrite clean URLs to .html files behind the scenes
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^([^/]+)/?$ $1.html [L]
+RewriteRule ^(.*)$ $1.html [L]
+
